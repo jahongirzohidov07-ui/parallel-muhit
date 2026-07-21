@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jahongir Zoxidov — Insholar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Literata:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #EDE7D9;
+    --parchment-deep: #E4DCC9;
+    --ink: #262019;
+    --ink-soft: #55503F;
+    --indigo: #3B4A6B;
+    --clay-gold: #9C7A3C;
+    --rule: #C9BFA8;
+    --surface: #F5F1E6;
+    --focus: #3B4A6B;
+  }
+
+  * { box-sizing: border-box; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--parchment);
+    color: var(--ink);
+    font-family: 'Literata', Georgia, serif;
+    min-height: 100vh;
+  }
+
+  body {
+    background-image:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(156, 122, 60, 0.06), transparent),
+      radial-gradient(ellipse 700px 400px at 100% 20%, rgba(59, 74, 107, 0.05), transparent);
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection { background: rgba(156, 122, 60, 0.25); }
+
+  /* ---------- Layout shell ---------- */
+
+  .shell {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 120px;
+  }
+
+  header.site-head {
+    padding: 56px 0 28px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .about-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding: 6px 0;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .about-link:hover { color: var(--indigo); border-color: var(--indigo); }
+
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .brand .taxallus { color: var(--ink); }
+  .brand .divider { color: var(--rule); font-weight: 400; }
+  .brand .muhit { color: var(--indigo); font-style: italic; font-weight: 500; }
+
+  .site-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------- Search / add row ---------- */
+
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    padding: 22px 0 30px;
+    flex-wrap: wrap;
+  }
+
+  .search-wrap {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+  }
+
+  .search-wrap input {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    padding: 12px 14px 12px 38px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    color: var(--ink);
+  }
+
+  .search-wrap input::placeholder { color: #9A917A; }
+
+  .search-icon {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    opacity: 0.5;
+  }
+
+  .btn-add {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 12px 18px;
+    background: var(--ink);
+    color: var(--parchment);
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+  }
+  .btn-add:hover { background: var(--indigo); }
+
+  /* ---------- Essay list (manuscript spine) ---------- */
+
+  .essay-list { list-style: none; margin: 0; padding: 0; }
+
+  .essay-row {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+    cursor: pointer;
+    transition: padding-left 0.18s ease;
+  }
+  .essay-row:hover { padding-left: 6px; }
+  .essay-row:hover .folio { border-color: var(--clay-gold); color: var(--clay-gold); }
+  .essay-row:hover .essay-title { color: var(--indigo); }
+
+  .folio {
+    font-family: 'Fraunces', serif;
+    font-variant-numeric: oldstyle-nums;
+    font-size: 17px;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .essay-title {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.35;
+    margin: 0 0 6px;
+    transition: color 0.15s ease;
+  }
+
+  .essay-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--clay-gold);
+    letter-spacing: 0.02em;
+  }
+
+  .essay-row {
+    align-items: center;
+  }
+
+  .essay-title {
+    margin: 0;
+  }
+
+  .empty-state {
+    padding: 60px 0;
+    text-align: center;
+    color: var(--ink-soft);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+  }
+
+  /* ---------- Reader view ---------- */
+
+  .reader { display: none; }
+  .reader.active { display: block; }
+  .list-view.hidden { display: none; }
+
+  .back-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 28px 0 6px;
+    cursor: pointer;
+    transition: color 0.15s ease;
+  }
+  .back-link:hover { color: var(--indigo); }
+
+  .reader-head {
+    padding: 20px 0 36px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 40px;
+  }
+
+  .reader-folio {
+    font-family: 'Fraunces', serif;
+    font-variant-numeric: oldstyle-nums;
+    font-size: 15px;
+    color: var(--clay-gold);
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+  }
+
+  .reader-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+  }
+
+  .reader-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+
+  .reader-views {
+    color: var(--clay-gold);
+  }
+
+  .reader-body {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--ink);
+  }
+
+  .reader-body p {
+    margin: 0 0 24px;
+  }
+
+  .reader-body p:first-of-type::first-letter {
+    font-family: 'Fraunces', serif;
+    font-size: 54px;
+    font-weight: 600;
+    float: left;
+    line-height: 0.85;
+    padding: 6px 8px 0 0;
+    color: var(--indigo);
+  }
+
+  .reader-foot {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .reader-nav {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    text-align: left;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    min-width: 0;
+  }
+  .nav-btn:hover {
+    border-color: var(--clay-gold);
+    background: #F8F4E9;
+  }
+  .nav-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .nav-btn-next {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  .nav-arrow {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    color: var(--clay-gold);
+    flex-shrink: 0;
+  }
+
+  .nav-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .nav-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+  }
+
+  .nav-title {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 560px) {
+    .reader-nav { grid-template-columns: 1fr; }
+    .nav-btn-next { flex-direction: row; text-align: left; }
+  }
+
+  .del-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #A15C4A;
+    opacity: 0.75;
+  }
+  .del-btn:hover { opacity: 1; text-decoration: underline; }
+
+  /* ---------- Add-essay modal ---------- */
+
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(38, 32, 25, 0.45);
+    z-index: 50;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-y: auto;
+  }
+  .modal-overlay.active { display: flex; }
+
+  .modal {
+    background: var(--parchment);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    max-width: 640px;
+    width: 100%;
+    padding: 32px;
+    box-shadow: 0 20px 60px rgba(38,32,25,0.25);
+  }
+
+  .modal h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 22px;
+  }
+
+  .field { margin-bottom: 16px; }
+  .field label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .field input, .field textarea {
+    width: 100%;
+    font-family: 'Literata', serif;
+    font-size: 15px;
+    padding: 10px 12px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    color: var(--ink);
+    resize: vertical;
+  }
+  .field textarea { min-height: 240px; line-height: 1.6; }
+
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .btn-secondary {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    padding: 10px 16px;
+    color: var(--ink-soft);
+  }
+  .btn-secondary:hover { color: var(--ink); }
+
+  .btn-primary {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 10px 18px;
+    background: var(--ink);
+    color: var(--parchment);
+    border-radius: 3px;
+  }
+  .btn-primary:hover { background: var(--indigo); }
+
+  .toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--ink);
+    color: var(--parchment);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 100;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @media (max-width: 560px) {
+    .reader-title { font-size: 27px; }
+    .reader-body { font-size: 16.5px; }
+    .brand { font-size: 23px; }
+    .essay-row { grid-template-columns: 44px 1fr; gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <header class="site-head">
+    <div>
+      <div class="brand" id="brandLink">
+        <span class="taxallus">Jahongir Zoxidov</span>
+      </div>
+      <div class="site-tagline">Tajribadan, ilmdan kelib chiqqan insholar</div>
+    </div>
+    <span class="about-link" id="aboutLink">Men haqimda</span>
+  </header>
+
+  <div id="listView" class="list-view">
+    <div class="toolbar">
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="#55503F" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Insholar orasidan izlash...">
+      </div>
+      <button class="btn-add" id="openAddModal">+ Yangi insho</button>
+    </div>
+
+    <ul class="essay-list" id="essayList"></ul>
+    <div class="empty-state" id="emptyState" style="display:none;">Hech narsa topilmadi.</div>
+  </div>
+
+  <div id="readerView" class="reader">
+    <span class="back-link" id="backLink">&larr; Insholar ro'yxatiga</span>
+    <div class="reader-head">
+      <div class="reader-folio" id="readerFolio"></div>
+      <h1 class="reader-title" id="readerTitle"></h1>
+      <div class="reader-date"><span id="readerDate"></span><span id="readerViews" class="reader-views"></span></div>
+    </div>
+    <div class="reader-body" id="readerBody"></div>
+    <div class="reader-nav">
+      <button class="nav-btn" id="prevBtn">
+        <span class="nav-arrow">&larr;</span>
+        <span class="nav-text">
+          <span class="nav-label">Oldingi insho</span>
+          <span class="nav-title" id="prevTitle"></span>
+        </span>
+      </button>
+      <button class="nav-btn nav-btn-next" id="nextBtn">
+        <span class="nav-text">
+          <span class="nav-label">Keyingi insho</span>
+          <span class="nav-title" id="nextTitle"></span>
+        </span>
+        <span class="nav-arrow">&rarr;</span>
+      </button>
+    </div>
+    <div class="reader-foot">
+      <span id="readerFolioFoot"></span>
+      <button class="del-btn" id="deleteBtn">O'chirish</button>
+    </div>
+  </div>
+
+  <div id="aboutView" class="reader">
+    <span class="back-link" id="aboutBackLink">&larr; Insholar ro'yxatiga</span>
+    <div class="reader-head">
+      <h1 class="reader-title">Men haqimda</h1>
+    </div>
+    <div class="reader-body">
+      <p>Zoxidov Jahongir. 1997-yil 17-martda Bekobodda tug'ilganman.</p>
+      <p>Ta'lim sohasida ishlayman — Jony Academy va Jony School maktablarining asoschisiman, shuningdek Stech IT o'quv markazining asoschilaridan biriman. O'qituvchilarni tayyorlash va mentorlik bilan ham shug'ullanaman.</p>
+      <p>2010-yildan buyon yuzlab kitob o'qiganman, o'zim ham bir necha kitob yozganman. Bu sayt — o'sha o'qiganlarim, o'ylaganlarim va hayotdan olgan tajribalarim asosida yozilgan insholarning uyi.</p>
+      <p>Muayyan kunga bog'lanib qolmayman — ilhom kelganda uzun insholar yozaman. Mavzular turlicha: ta'lim, oila, moliya, o'z-o'zini anglash, din. Lekin ularning barchasida bitta maqsad bor: tajribadan chiqqan haqiqatni sodda tilda yetkazish.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h2>Yangi insho qo'shish</h2>
+    <div class="field">
+      <label>Sarlavha</label>
+      <input type="text" id="newTitle" placeholder="Masalan: Ildizlarga yopishish yutqazishni kamaytiradi">
+    </div>
+    <div class="field">
+      <label>Sana</label>
+      <input type="text" id="newDate" placeholder="Masalan: 20.07.2026">
+    </div>
+    <div class="field">
+      <label>Matn</label>
+      <textarea id="newBody" placeholder="Insho matnini shu yerga joylashtiring..."></textarea>
+    </div>
+    <div class="field">
+      <label>Maxfiy so'z</label>
+      <input type="password" id="newPin" placeholder="Faqat sizga ma'lum bo'lgan so'z">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary" id="cancelAdd">Bekor qilish</button>
+      <button class="btn-primary" id="saveAdd">Saqlash</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  const STORAGE_KEY = 'essays';
+  let essays = [];
+  let activeId = null;
+
+  const listView = document.getElementById('listView');
+  const readerView = document.getElementById('readerView');
+  const essayListEl = document.getElementById('essayList');
+  const emptyState = document.getElementById('emptyState');
+  const searchInput = document.getElementById('searchInput');
+  const toast = document.getElementById('toast');
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  function seedEssays() {
+    return [
+      {
+        id: 'seed-1',
+        folio: '1',
+        title: 'Yangi uy qurdik',
+        date: '21.07.2026',
+        views: 0,
+        body: [
+          "Do'stlar, bugungi insho odatdagidek emas.",
+          "Bir necha yildan beri Telegram kanalimizda insholar yozib keldik. Ikkinchi, beshinchi, o'n beshinchi... har birida bir mavzu, bir fikr, bir umid bilan yozdik. Loyihamiz shu yerda o'sdi, shu yerda ko'paydi.",
+          "Lekin bir muammoni doim his qilib keldim.",
+          "Telegram — tez xabar uchun qurilgan platforma. Kimdir sizga \"salom, bugun uchrashamizmi\" deb yozadi, siz \"ha\" deb javob berasiz. Bir necha soniyalik almashinuv. Uzun matn uchun Telegram noqulay joy. Skroll qilaverasiz, qilaverasiz. Qayerda boshlanib, qayerda tugaganini yo'qotib qo'yasiz. Ekran kichkina, harflar zich, ko'z charchaydi.",
+          "Insholarimiz esa uzun. Ba'zida ikki ming so'zdan oshadi. Bir fikrni to'liq ochish, misollar bilan boyitish, tarixdan, ilmdan, hayotdan dalil keltirish — buning uchun joy kerak. Vaqt kerak. Va o'quvchiga ham, o'qish uchun qulay muhit kerak.",
+          "Shuning uchun ham yangi uy qurishga qaror qildik.",
+          "Bu sayt — o'sha muammoni yechish uchun. Uzun insholarni, o'qishga qulay, ko'zga yengil, sahifalar orasida adashib qolmaydigan tarzda joylashtirish uchun.",
+          "Telegram kanalimiz albatta davom etadi. U yerda qisqa fikrlar, e'lonlar, va yangi insho chiqqanida xabar bo'ladi. Lekin insholarning o'zi — asosiy uy — endi shu yerda bo'ladi.",
+          "Nega bu qadam muhim?",
+          "Chunki yozish — vaqtinchalik ish emas. Beshinchi inshoning ham, ellikinchisining ham, bir necha yildan keyin o'qilishini xohlayman. Telegramda eski xabar tezda ko'milib ketadi. Yangi kanal a'zosi birinchi kundan boshlab yuz elliktacha insho orasida adashib qoladi. Bu yerda esa — tartib bor. Sarlavha bor. Sana bor. Izlash imkoni bor.",
+          "Bu — sizlar uchun ham, o'zim uchun ham arxiv. Yillar davomida yozgan fikrlarimizning uyi.",
+          "Birinchi insho sifatida shu e'lonni yozishni to'g'ri deb bildim. Chunki har bir yangi boshlanish, nega boshlanganini tushuntirishdan boshlanadi.",
+          "Xush kelibsiz yangi uyimizga."
+        ].join('\n\n')
+      },
+      {
+        id: 'seed-2',
+        folio: '2',
+        title: "Bitta barg bilan butun daraxt haqida xulosa chiqarilmaydi",
+        date: '21.07.2026',
+        views: 0,
+        body: [
+          "Do'stlar, bugun bir kuzatuvimni sizlar bilan bo'lishmoqchiman.",
+          "Suhbatlarni kuzataman. Ijtimoiy tarmoqlardagi izohlarni o'qiyman. Bir narsa ko'pincha takrorlanayotganini payqadim: murakkab holatlarni soddalashtirish, umumiylashtirish, ingliz tilida buni Generalization deyishadi.",
+          "Turmushi o'xshamagan erkak, hamma ayollarni noshukurga chiqaradi. Turmushi o'xshamagan ayol, hamma erkaklarni xiyonatda ayblaydi, \"erkaklarning hammasi shunaqa\" deydi, xuddi yer yuzidagi to'rt milliard erkakning hammasi bilan munosabat qilib ko'rgan va shu 4,000,000,000 erkakning hammasi unga xiyonat qilishga ulgurgandek.",
+          "Bir kishi bir marta xato qiladi. O'tmishida ham, kelajagi uchun ham xulosa chiqarib qo'yiladi. Qalblar egasi kim ekanligini unutmaylik.",
+          "Rossiyada o'zbeklar ko'p qora ishga borgani uchun, \"hamma o'zbeklar shunaqa savodsiz, qora ishchi xalqi\" deyishadi. Koreyada bir o'zbek mashinani yomon haydab, bir kishining o'limiga sababchi bo'ladi. Shundan butun xalq uchun xulosa chiqarishadi: demak, o'zbeklar mashinani yomon haydaydi.",
+          "Bir oilaning farzandi ajrashsa, \"Ko'rdingizmi, bu oila farzandlarini yomon tarbiyalagan ekan\" deyishadi. Ajrashishning ortida qancha sabab yotishi mumkinligini o'ylab ham o'tirishmaydi. Ikkala tomon ham yaxshi tarbiyalangan bo'lishi, faqat xarakterlari mos kelmasligi mumkinligini eslashmaydi.",
+          "Bu holat yana takrorlanadi. Bir yosh yigit behuda yursa, \"hozirgi yoshlar shunday\" deyishadi. Bir shifokor xato qilsa, \"shifokorlarga ishonib bo'lmaydi\" deyishadi. Bir mazhab vakilining xatosi, butun mazhabga yopishtiriladi. Katta farzand yaramas chiqsa, \"bu oilaning bolalari shunday\" deb kichigiga ham gumon bilan qarashadi. Bir viloyat odami o'g'rilik qilsa, \"falon viloyat odamlari hammasi o'g'ri\" yoki \"falon viloyatliklar o'g'ri bo'ladi\" deyishadi. Boy odam takabburlik qilsa, \"boylar shunday\" deyishadi, kambag'al ishlamasa, \"kambag'allar dangasa\" deyishadi.",
+          "Bularning barchasida bitta ildiz bor: bir yoki ikkita odamning qilgan ishi, butun bir xalq yoki guruhning xarakteriga aylantirib qo'yiladi. Lekin aql uchun bu qulay yo'l. \"Har bir odamni alohida baholash\" charchatadi, vaqt oladi. \"Hammasi bir xil\" deb qo'yish, miyaga osonlik beradi. Osonlik esa ko'pincha yolg'on ustiga qurilgan bo'ladi.",
+          "So'zlarimizga ham e'tibor berishimiz kerak. \"Hamma\" deganda, chindan hammasini nazarda tutamizmi? \"Ko'pchilik\" deganda, buning ortida aniq raqam bormi, yoki bu ham shunchaki taassurotimizmi? Aniq bilmasak, \"ba'zilari\" deyish haqiqatga yaqinroq bo'ladi.",
+          "Bu umumlashtirishning eng nozik va eng xavflisi, ibodat bilan xulqni aralashtirib yuborish.",
+          "Hijobli qiz yomon ish qilsa, \"ko'rdik hijobliklarni\" deyishadi, butun hijoblilarga tamg'a qo'yishadi. Namozxon odamning gunohi ko'rinib qolsa, \"namozxonlar ham shunaqa ekan\" deyishadi.",
+          "Bu, ikki xil narsani bir-biriga chalkashtirish.",
+          "Namoz, Allohga bo'lgan aloqa, ibodat. Gunoh, insonning kuchsizligi, nafsining imtihoni. Bittasi ikkinchisini bekor qilmaydi. Namoz o'qiydigan odam gunoh qilsa, bu uning namozi yolg'on degani emas. Bu uning nafsi hali to'liq tarbiyalanmagan degani, xolos. Payg'ambarimiz alayhissalom aytganlar: namoz yomonlik va buzuqlikdan qaytaradi. Bu, vaqt o'tishi bilan ishlaydigan jarayon, bir zumda tugaydigan sehrli tugma emas.",
+          "Hijob, Allohning amriga itoat, kiyim orqali ko'rsatilgan bo'ysunish. Hijobli qizning xulqi yomon bo'lsa, bu hijobning ma'nosizligini ko'rsatmaydi. Bu, o'sha qizning boshqa bir sohada hali kurashayotganini ko'rsatadi, xolos.",
+          "Eng muhimi shuki, bular ikki alohida savol-javob. Qiyomat kunida namoz alohida so'raladi, gunoh alohida so'raladi. Ular bir-birining o'rniga o'tmaydi, lekin bir-birini ham yo'qqa chiqarmaydi. Har bir jon o'z qilmishi uchun javobgar. Bir jonning gunohini boshqasi ko'tarmaydi, bu Qur'onning ishorasi.",
+          "Odamlar bu ikkisini nega aralashtirib yuboradi?",
+          "Chunki inson butun ko'rishni yaxshi ko'radi. \"Bu odam yaxshi\" yoki \"bu odam yomon\" degan yorliq qulay. \"Bu odam bu sohada kuchli, u sohada hali kurashayotgan odam\" deyish, bunga qaraganda ancha qiyin.",
+          "Lekin haqiqat shunday: hech kim to'liq yaxshi yoki to'liq yomon emas. Har kim turli sohalarda turli darajada. Namozi kuchli, sabri kuchsiz odam bor. Sabri kuchli, ilmi kam odam bor. Ilmi baland, ixlosi kuchsiz odam bor. Bularning hech biri, boshqasi haqida to'liq xulosa bermaydi.",
+          "Umumlashtirish yana bir zararni olib keladi, u ko'pincha o'zini oqlash uchun ishlatiladi. \"Hamma erkak shunday\" deydigan kishi, o'z yarasini tushuntirishga harakat qiladi. \"Namozxonlar ham gunoh qiladi-ku\" deydigan kishi, o'z namoz o'qimasligini oqlashga harakat qiladi. Umumlashtirish, ba'zan aybni tarqatib, o'zini yengillashtirish usuli bo'lib chiqadi.",
+          "Shuning uchun ham keyingi safar \"bularning hammasi shunaqa\" degan gap tilimizga kelsa, bir soniya to'xtaylik. So'raylik: men nechta kishini ko'rdim? Ular haqiqatan ham butun guruhni vakil qiladimi? Yoki men bitta bargga qarab, butun daraxt haqida hukm chiqaryapmanmi?",
+          "Har bir inson, o'z hisobi bilan turadi. Har bir xato, o'z egasiga tegishli. Har bir yaxshilik ham shunday. Guruhga yopishtirilgan tamg'a, aslida hech kimga to'g'ri kelmaydi, chunki guruh degan narsa yo'q, faqat alohida-alohida insonlar bor, har biri o'z yo'lida, o'z kurashida."
+        ].join('\n\n')
+      }
+    ];
+  }
+
+  async function loadEssays() {
+    try {
+      const result = await window.storage.get(STORAGE_KEY, true);
+      if (result && result.value) {
+        essays = JSON.parse(result.value);
+      } else {
+        essays = seedEssays();
+        await window.storage.set(STORAGE_KEY, JSON.stringify(essays), true);
+      }
+    } catch (e) {
+      essays = seedEssays();
+      try { await window.storage.set(STORAGE_KEY, JSON.stringify(essays), true); } catch (e2) {}
+    }
+
+    let migrated = false;
+    const fixedDates = { 'seed-1': '21.07.2026', 'seed-2': '21.07.2026' };
+    essays.forEach(e => {
+      if (fixedDates[e.id] && e.date !== fixedDates[e.id]) {
+        e.date = fixedDates[e.id];
+        migrated = true;
+      }
+      if (typeof e.views !== 'number') {
+        e.views = 0;
+        migrated = true;
+      }
+    });
+    if (migrated) await persist();
+
+    renderList();
+  }
+
+  async function persist() {
+    try {
+      await window.storage.set(STORAGE_KEY, JSON.stringify(essays), true);
+    } catch (e) {
+      showToast("Saqlashda xatolik yuz berdi.");
+    }
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function renderList(filter) {
+    const q = (filter || '').trim().toLowerCase();
+    const sorted = sortedEssays();
+    const filtered = q
+      ? sorted.filter(e => (e.title + ' ' + e.body).toLowerCase().includes(q))
+      : sorted;
+
+    essayListEl.innerHTML = '';
+    emptyState.style.display = filtered.length ? 'none' : 'block';
+
+    filtered.forEach(essay => {
+      const li = document.createElement('li');
+      li.className = 'essay-row';
+      li.setAttribute('tabindex', '0');
+      li.setAttribute('role', 'button');
+      li.innerHTML = `
+        <div class="folio">${escapeHtml(essay.folio || '')}</div>
+        <h3 class="essay-title">${escapeHtml(essay.title)}</h3>
+      `;
+      li.addEventListener('click', () => openReader(essay.id));
+      li.addEventListener('keypress', (e) => { if (e.key === 'Enter') openReader(essay.id); });
+      essayListEl.appendChild(li);
+    });
+  }
+
+  function sortedEssays() {
+    return [...essays].sort((a, b) => (parseInt(a.folio,10) || 0) - (parseInt(b.folio,10) || 0));
+  }
+
+  async function openReader(id) {
+    const list = sortedEssays();
+    const idx = list.findIndex(e => e.id === id);
+    const essay = list[idx];
+    if (!essay) return;
+    activeId = id;
+
+    essay.views = (essay.views || 0) + 1;
+    const original = essays.find(e => e.id === id);
+    if (original) original.views = essay.views;
+    persist();
+
+    document.getElementById('readerFolio').textContent = '№ ' + (essay.folio || '');
+    document.getElementById('readerFolioFoot').textContent = 'Jahongir Zoxidov · № ' + (essay.folio || '');
+    document.getElementById('readerTitle').textContent = essay.title;
+    document.getElementById('readerDate').textContent = essay.date || '';
+    document.getElementById('readerViews').textContent = (essay.date ? '· ' : '') + essay.views + (essay.views === 1 ? ' marta o\'qilgan' : ' marta o\'qilgan');
+    const bodyEl = document.getElementById('readerBody');
+    bodyEl.innerHTML = '';
+    essay.body.split('\n\n').forEach(para => {
+      if (!para.trim()) return;
+      const p = document.createElement('p');
+      p.textContent = para.trim();
+      bodyEl.appendChild(p);
+    });
+
+    const prevEssay = idx > 0 ? list[idx - 1] : null;
+    const nextEssay = idx < list.length - 1 ? list[idx + 1] : null;
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    if (prevEssay) {
+      prevBtn.disabled = false;
+      document.getElementById('prevTitle').textContent = prevEssay.title;
+      prevBtn.onclick = () => openReader(prevEssay.id);
+    } else {
+      prevBtn.disabled = true;
+      document.getElementById('prevTitle').textContent = '';
+    }
+
+    if (nextEssay) {
+      nextBtn.disabled = false;
+      document.getElementById('nextTitle').textContent = nextEssay.title;
+      nextBtn.onclick = () => openReader(nextEssay.id);
+    } else {
+      nextBtn.disabled = true;
+      document.getElementById('nextTitle').textContent = '';
+    }
+
+    listView.classList.add('hidden');
+    readerView.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  function closeReader() {
+    activeId = null;
+    readerView.classList.remove('active');
+    document.getElementById('aboutView').classList.remove('active');
+    listView.classList.remove('hidden');
+  }
+
+  function nextFolio() {
+    const nums = essays.map(e => parseInt(e.folio, 10)).filter(n => !isNaN(n));
+    const max = nums.length ? Math.max(...nums) : 159;
+    return String(max + 1);
+  }
+
+  document.getElementById('backLink').addEventListener('click', closeReader);
+  document.getElementById('brandLink').addEventListener('click', closeReader);
+
+  const aboutView = document.getElementById('aboutView');
+  document.getElementById('aboutLink').addEventListener('click', () => {
+    listView.classList.add('hidden');
+    readerView.classList.remove('active');
+    aboutView.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  });
+  document.getElementById('aboutBackLink').addEventListener('click', () => {
+    aboutView.classList.remove('active');
+    listView.classList.remove('hidden');
+  });
+
+  document.getElementById('deleteBtn').addEventListener('click', async () => {
+    if (!activeId) return;
+    if (!confirm("Ushbu inshoni o'chirmoqchimisiz?")) return;
+    essays = essays.filter(e => e.id !== activeId);
+    await persist();
+    closeReader();
+    renderList(searchInput.value);
+    showToast("Insho o'chirildi.");
+  });
+
+  searchInput.addEventListener('input', () => renderList(searchInput.value));
+
+  const modalOverlay = document.getElementById('modalOverlay');
+  document.getElementById('openAddModal').addEventListener('click', () => {
+    document.getElementById('newTitle').value = '';
+    document.getElementById('newDate').value = '';
+    document.getElementById('newBody').value = '';
+    document.getElementById('newPin').value = '';
+    modalOverlay.classList.add('active');
+    document.getElementById('newTitle').focus();
+  });
+  document.getElementById('cancelAdd').addEventListener('click', () => modalOverlay.classList.remove('active'));
+  modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) modalOverlay.classList.remove('active'); });
+
+  const PIN_KEY = 'site_pin';
+
+  document.getElementById('saveAdd').addEventListener('click', async () => {
+    const title = document.getElementById('newTitle').value.trim();
+    const date = document.getElementById('newDate').value.trim();
+    const body = document.getElementById('newBody').value.trim();
+    const pinInput = document.getElementById('newPin').value;
+
+    if (!title || !body) {
+      showToast("Sarlavha va matn kiritilishi shart.");
+      return;
+    }
+    if (!pinInput) {
+      showToast("Maxfiy so'zni kiriting.");
+      return;
+    }
+
+    let storedPin = null;
+    try {
+      const res = await window.storage.get(PIN_KEY, true);
+      storedPin = res ? res.value : null;
+    } catch (e) {
+      storedPin = null;
+    }
+
+    if (!storedPin) {
+      const confirmMsg = "Bu — birinchi marta insho qo'shyapsiz. Kiritgan maxfiy so'zingiz saytning doimiy paroli bo'lib qoladi, faqat shu so'zni bilganlar keyinchalik insho qo'sha oladi. Davom etasizmi?";
+      if (!confirm(confirmMsg)) return;
+      try {
+        await window.storage.set(PIN_KEY, pinInput, true);
+      } catch (e) {
+        showToast("Parolni saqlashda xatolik yuz berdi.");
+        return;
+      }
+    } else if (pinInput !== storedPin) {
+      showToast("Maxfiy so'z noto'g'ri.");
+      return;
+    }
+
+    const essay = {
+      id: 'e-' + Date.now(),
+      folio: nextFolio(),
+      title,
+      date,
+      body
+    };
+    essays.push(essay);
+    await persist();
+    modalOverlay.classList.remove('active');
+    renderList(searchInput.value);
+    showToast("Insho saqlandi.");
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (modalOverlay.classList.contains('active')) modalOverlay.classList.remove('active');
+      else if (readerView.classList.contains('active')) closeReader();
+      else if (aboutView.classList.contains('active')) closeReader();
+    }
+  });
+
+  loadEssays();
+})();
+</script>
+
+</body>
+</html>
