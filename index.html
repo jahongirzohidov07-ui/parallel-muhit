@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jahongir Zoxidov — Insholar</title>
+<meta name="description" content="Ta'lim, oila, moliya, o'z-o'zini anglash va din haqida tajribadan kelib chiqqan uzun insholar. Jahongir Zoxidovning shaxsiy insholar arxivi.">
+<meta name="author" content="Jahongir Zoxidov">
+<meta name="theme-color" content="#EDE7D9">
+<link rel="canonical" href="https://www.jahongirzoxidov.uz/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jahongir Zoxidov">
+<meta property="og:title" content="Jahongir Zoxidov — Insholar">
+<meta property="og:description" content="Ta'lim, oila, moliya, o'z-o'zini anglash va din haqida tajribadan kelib chiqqan uzun insholar.">
+<meta property="og:url" content="https://www.jahongirzoxidov.uz/">
+<meta property="og:locale" content="uz_UZ">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%233B4A6B'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='bold' fill='%23EDE7D9' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Literata:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -121,6 +133,7 @@
   .search-wrap {
     flex: 1;
     min-width: 200px;
+    max-width: 460px;
     position: relative;
   }
 
@@ -146,19 +159,6 @@
     height: 15px;
     opacity: 0.5;
   }
-
-  .btn-add {
-    font-family: 'Inter', sans-serif;
-    font-size: 13.5px;
-    font-weight: 500;
-    padding: 12px 18px;
-    background: var(--ink);
-    color: var(--parchment);
-    border-radius: 3px;
-    white-space: nowrap;
-    transition: background 0.15s ease;
-  }
-  .btn-add:hover { background: var(--indigo); }
 
   /* ---------- Essay list (manuscript spine) ---------- */
 
@@ -380,94 +380,13 @@
     .nav-btn-next { flex-direction: row; text-align: left; }
   }
 
-  .del-btn {
+  .copy-btn {
     font-family: 'Inter', sans-serif;
     font-size: 12px;
-    color: #A15C4A;
-    opacity: 0.75;
+    color: var(--indigo);
+    opacity: 0.8;
   }
-  .del-btn:hover { opacity: 1; text-decoration: underline; }
-
-  /* ---------- Add-essay modal ---------- */
-
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(38, 32, 25, 0.45);
-    z-index: 50;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 40px 20px;
-    overflow-y: auto;
-  }
-  .modal-overlay.active { display: flex; }
-
-  .modal {
-    background: var(--parchment);
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    max-width: 640px;
-    width: 100%;
-    padding: 32px;
-    box-shadow: 0 20px 60px rgba(38,32,25,0.25);
-  }
-
-  .modal h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 22px;
-    font-weight: 600;
-    margin: 0 0 22px;
-  }
-
-  .field { margin-bottom: 16px; }
-  .field label {
-    display: block;
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--ink-soft);
-    margin-bottom: 6px;
-    letter-spacing: 0.02em;
-  }
-  .field input, .field textarea {
-    width: 100%;
-    font-family: 'Literata', serif;
-    font-size: 15px;
-    padding: 10px 12px;
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    color: var(--ink);
-    resize: vertical;
-  }
-  .field textarea { min-height: 240px; line-height: 1.6; }
-
-  .modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 20px;
-  }
-
-  .btn-secondary {
-    font-family: 'Inter', sans-serif;
-    font-size: 13.5px;
-    padding: 10px 16px;
-    color: var(--ink-soft);
-  }
-  .btn-secondary:hover { color: var(--ink); }
-
-  .btn-primary {
-    font-family: 'Inter', sans-serif;
-    font-size: 13.5px;
-    font-weight: 500;
-    padding: 10px 18px;
-    background: var(--ink);
-    color: var(--parchment);
-    border-radius: 3px;
-  }
-  .btn-primary:hover { background: var(--indigo); }
+  .copy-btn:hover { opacity: 1; text-decoration: underline; }
 
   .toast {
     position: fixed;
@@ -518,7 +437,6 @@
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="#55503F" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input type="text" id="searchInput" placeholder="Insholar orasidan izlash...">
       </div>
-      <button class="btn-add" id="openAddModal">+ Yangi insho</button>
     </div>
 
     <ul class="essay-list" id="essayList"></ul>
@@ -551,7 +469,7 @@
     </div>
     <div class="reader-foot">
       <span id="readerFolioFoot"></span>
-      <button class="del-btn" id="deleteBtn">O'chirish</button>
+      <button class="copy-btn" id="copyBtn">Havolani nusxalash</button>
     </div>
   </div>
 
@@ -570,37 +488,10 @@
 
 </div>
 
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <h2>Yangi insho qo'shish</h2>
-    <div class="field">
-      <label>Sarlavha</label>
-      <input type="text" id="newTitle" placeholder="Masalan: Ildizlarga yopishish yutqazishni kamaytiradi">
-    </div>
-    <div class="field">
-      <label>Sana</label>
-      <input type="text" id="newDate" placeholder="Masalan: 20.07.2026">
-    </div>
-    <div class="field">
-      <label>Matn</label>
-      <textarea id="newBody" placeholder="Insho matnini shu yerga joylashtiring..."></textarea>
-    </div>
-    <div class="field">
-      <label>Maxfiy so'z</label>
-      <input type="password" id="newPin" placeholder="Faqat sizga ma'lum bo'lgan so'z">
-    </div>
-    <div class="modal-actions">
-      <button class="btn-secondary" id="cancelAdd">Bekor qilish</button>
-      <button class="btn-primary" id="saveAdd">Saqlash</button>
-    </div>
-  </div>
-</div>
-
 <div class="toast" id="toast"></div>
 
 <script>
 (function () {
-  const STORAGE_KEY = 'essays';
   let essays = [];
   let activeId = null;
 
@@ -617,14 +508,34 @@
     setTimeout(() => toast.classList.remove('show'), 2200);
   }
 
-  function seedEssays() {
-    return [
+  /* =====================================================================
+     INSHOLAR ARXIVI — barcha insholar shu ro'yxatda saqlanadi.
+
+     Yangi insho qo'shish uchun ro'yxat oxiriga shunday blok qo'shing:
+
+       {
+         folio: '3',                  // tartib raqami — ro'yxat shu bo'yicha saralanadi
+         title: 'Insho sarlavhasi',
+         date:  '25.07.2026',         // kun.oy.yil
+         body: [
+           "Birinchi xatboshi.",
+           "Ikkinchi xatboshi."
+         ].join(PARA)
+       },
+
+     Qoidalar:
+       - Har bir xatboshi alohida qatorda, qo'shtirnoq ichida, oxirida vergul.
+       - Oxirgi xatboshidan keyin vergul qo'yilmaydi.
+       - Matn ichida qo'shtirnoq kerak bo'lsa, oldiga chiziqcha qo'yiladi: \"shunday\"
+     ===================================================================== */
+
+  const PARA = '\n\n';
+
+  const ESSAYS = [
       {
-        id: 'seed-1',
         folio: '1',
         title: 'Yangi uy qurdik',
         date: '21.07.2026',
-        views: 0,
         body: [
           "Do'stlar, bugungi insho odatdagidek emas.",
           "Bir necha yildan beri Telegram kanalimizda insholar yozib keldik. Ikkinchi, beshinchi, o'n beshinchi... har birida bir mavzu, bir fikr, bir umid bilan yozdik. Loyihamiz shu yerda o'sdi, shu yerda ko'paydi.",
@@ -639,14 +550,12 @@
           "Bu — sizlar uchun ham, o'zim uchun ham arxiv. Yillar davomida yozgan fikrlarimizning uyi.",
           "Birinchi insho sifatida shu e'lonni yozishni to'g'ri deb bildim. Chunki har bir yangi boshlanish, nega boshlanganini tushuntirishdan boshlanadi.",
           "Xush kelibsiz yangi uyimizga."
-        ].join('\n\n')
+        ].join(PARA)
       },
       {
-        id: 'seed-2',
         folio: '2',
         title: "Bitta barg bilan butun daraxt haqida xulosa chiqarilmaydi",
         date: '21.07.2026',
-        views: 0,
         body: [
           "Do'stlar, bugun bir kuzatuvimni sizlar bilan bo'lishmoqchiman.",
           "Suhbatlarni kuzataman. Ijtimoiy tarmoqlardagi izohlarni o'qiyman. Bir narsa ko'pincha takrorlanayotganini payqadim: murakkab holatlarni soddalashtirish, umumiylashtirish, ingliz tilida buni Generalization deyishadi.",
@@ -669,48 +578,25 @@
           "Umumlashtirish yana bir zararni olib keladi, u ko'pincha o'zini oqlash uchun ishlatiladi. \"Hamma erkak shunday\" deydigan kishi, o'z yarasini tushuntirishga harakat qiladi. \"Namozxonlar ham gunoh qiladi-ku\" deydigan kishi, o'z namoz o'qimasligini oqlashga harakat qiladi. Umumlashtirish, ba'zan aybni tarqatib, o'zini yengillashtirish usuli bo'lib chiqadi.",
           "Shuning uchun ham keyingi safar \"bularning hammasi shunaqa\" degan gap tilimizga kelsa, bir soniya to'xtaylik. So'raylik: men nechta kishini ko'rdim? Ular haqiqatan ham butun guruhni vakil qiladimi? Yoki men bitta bargga qarab, butun daraxt haqida hukm chiqaryapmanmi?",
           "Har bir inson, o'z hisobi bilan turadi. Har bir xato, o'z egasiga tegishli. Har bir yaxshilik ham shunday. Guruhga yopishtirilgan tamg'a, aslida hech kimga to'g'ri kelmaydi, chunki guruh degan narsa yo'q, faqat alohida-alohida insonlar bor, har biri o'z yo'lida, o'z kurashida."
-        ].join('\n\n')
+        ].join(PARA)
       }
-    ];
-  }
+  ];
 
-  async function loadEssays() {
-    try {
-      const result = await window.storage.get(STORAGE_KEY, true);
-      if (result && result.value) {
-        essays = JSON.parse(result.value);
-      } else {
-        essays = seedEssays();
-        await window.storage.set(STORAGE_KEY, JSON.stringify(essays), true);
-      }
-    } catch (e) {
-      essays = seedEssays();
-      try { await window.storage.set(STORAGE_KEY, JSON.stringify(essays), true); } catch (e2) {}
-    }
-
-    let migrated = false;
-    const fixedDates = { 'seed-1': '21.07.2026', 'seed-2': '21.07.2026' };
-    essays.forEach(e => {
-      if (fixedDates[e.id] && e.date !== fixedDates[e.id]) {
-        e.date = fixedDates[e.id];
-        migrated = true;
-      }
-      if (typeof e.views !== 'number') {
-        e.views = 0;
-        migrated = true;
-      }
-    });
-    if (migrated) await persist();
-
+  function initEssays() {
+    essays = ESSAYS.map(e => ({
+      id: 'insho-' + e.folio,
+      folio: String(e.folio),
+      title: e.title,
+      date: e.date || '',
+      body: e.body || ''
+    }));
     renderList();
+    route();
   }
 
-  async function persist() {
-    try {
-      await window.storage.set(STORAGE_KEY, JSON.stringify(essays), true);
-    } catch (e) {
-      showToast("Saqlashda xatolik yuz berdi.");
-    }
+  function readMinutes(body) {
+    const words = (body || '').trim().split(/\s+/).filter(Boolean).length;
+    return Math.max(1, Math.round(words / 150));
   }
 
   function escapeHtml(str) {
@@ -738,8 +624,8 @@
         <div class="folio">${escapeHtml(essay.folio || '')}</div>
         <h3 class="essay-title">${escapeHtml(essay.title)}</h3>
       `;
-      li.addEventListener('click', () => openReader(essay.id));
-      li.addEventListener('keypress', (e) => { if (e.key === 'Enter') openReader(essay.id); });
+      li.addEventListener('click', () => { location.hash = 'insho-' + essay.folio; });
+      li.addEventListener('keypress', (e) => { if (e.key === 'Enter') location.hash = 'insho-' + essay.folio; });
       essayListEl.appendChild(li);
     });
   }
@@ -748,23 +634,18 @@
     return [...essays].sort((a, b) => (parseInt(a.folio,10) || 0) - (parseInt(b.folio,10) || 0));
   }
 
-  async function openReader(id) {
+  function showEssay(id) {
     const list = sortedEssays();
     const idx = list.findIndex(e => e.id === id);
     const essay = list[idx];
-    if (!essay) return;
+    if (!essay) return false;
     activeId = id;
-
-    essay.views = (essay.views || 0) + 1;
-    const original = essays.find(e => e.id === id);
-    if (original) original.views = essay.views;
-    persist();
 
     document.getElementById('readerFolio').textContent = '№ ' + (essay.folio || '');
     document.getElementById('readerFolioFoot').textContent = 'Jahongir Zoxidov · № ' + (essay.folio || '');
     document.getElementById('readerTitle').textContent = essay.title;
     document.getElementById('readerDate').textContent = essay.date || '';
-    document.getElementById('readerViews').textContent = (essay.date ? '· ' : '') + essay.views + (essay.views === 1 ? ' marta o\'qilgan' : ' marta o\'qilgan');
+    document.getElementById('readerViews').textContent = (essay.date ? ' · ' : '') + readMinutes(essay.body) + ' daqiqa o\'qish';
     const bodyEl = document.getElementById('readerBody');
     bodyEl.innerHTML = '';
     essay.body.split('\n\n').forEach(para => {
@@ -782,7 +663,7 @@
     if (prevEssay) {
       prevBtn.disabled = false;
       document.getElementById('prevTitle').textContent = prevEssay.title;
-      prevBtn.onclick = () => openReader(prevEssay.id);
+      prevBtn.onclick = () => { location.hash = 'insho-' + prevEssay.folio; };
     } else {
       prevBtn.disabled = true;
       document.getElementById('prevTitle').textContent = '';
@@ -791,131 +672,110 @@
     if (nextEssay) {
       nextBtn.disabled = false;
       document.getElementById('nextTitle').textContent = nextEssay.title;
-      nextBtn.onclick = () => openReader(nextEssay.id);
+      nextBtn.onclick = () => { location.hash = 'insho-' + nextEssay.folio; };
     } else {
       nextBtn.disabled = true;
       document.getElementById('nextTitle').textContent = '';
     }
 
     listView.classList.add('hidden');
+    aboutView.classList.remove('active');
     readerView.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'auto' });
+    document.title = essay.title + ' — Jahongir Zoxidov';
+    return true;
   }
-
-  function closeReader() {
-    activeId = null;
-    readerView.classList.remove('active');
-    document.getElementById('aboutView').classList.remove('active');
-    listView.classList.remove('hidden');
-  }
-
-  function nextFolio() {
-    const nums = essays.map(e => parseInt(e.folio, 10)).filter(n => !isNaN(n));
-    const max = nums.length ? Math.max(...nums) : 159;
-    return String(max + 1);
-  }
-
-  document.getElementById('backLink').addEventListener('click', closeReader);
-  document.getElementById('brandLink').addEventListener('click', closeReader);
 
   const aboutView = document.getElementById('aboutView');
-  document.getElementById('aboutLink').addEventListener('click', () => {
+
+  function showList() {
+    activeId = null;
+    readerView.classList.remove('active');
+    aboutView.classList.remove('active');
+    listView.classList.remove('hidden');
+    document.title = 'Jahongir Zoxidov — Insholar';
+  }
+
+  function showAbout() {
+    activeId = null;
     listView.classList.add('hidden');
     readerView.classList.remove('active');
     aboutView.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'auto' });
-  });
-  document.getElementById('aboutBackLink').addEventListener('click', () => {
-    aboutView.classList.remove('active');
-    listView.classList.remove('hidden');
-  });
+    document.title = "Men haqimda — Jahongir Zoxidov";
+  }
 
-  document.getElementById('deleteBtn').addEventListener('click', async () => {
-    if (!activeId) return;
-    if (!confirm("Ushbu inshoni o'chirmoqchimisiz?")) return;
-    essays = essays.filter(e => e.id !== activeId);
-    await persist();
-    closeReader();
-    renderList(searchInput.value);
-    showToast("Insho o'chirildi.");
+  /* Har bir insho o'z havolasiga ega: /#insho-2 — Telegramga tashlash uchun */
+  function route() {
+    let h = '';
+    try { h = decodeURIComponent((location.hash || '').replace(/^#/, '')); }
+    catch (err) { h = (location.hash || '').replace(/^#/, ''); }
+
+    if (h === 'men-haqimda') { showAbout(); return; }
+
+    const m = h.match(/^insho-(.+)$/);
+    if (m) {
+      const target = essays.find(e => e.folio === m[1]);
+      if (target && showEssay(target.id)) return;
+    }
+    showList();
+  }
+
+  function goHome() {
+    if (location.hash) {
+      history.pushState(null, '', location.pathname + location.search);
+    }
+    showList();
+  }
+
+  window.addEventListener('hashchange', route);
+  window.addEventListener('popstate', route);
+
+  document.getElementById('backLink').addEventListener('click', goHome);
+  document.getElementById('brandLink').addEventListener('click', goHome);
+  document.getElementById('aboutBackLink').addEventListener('click', goHome);
+  document.getElementById('aboutLink').addEventListener('click', () => { location.hash = 'men-haqimda'; });
+
+  document.getElementById('copyBtn').addEventListener('click', () => {
+    const url = location.href;
+
+    function fallback() {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = url;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-1000px';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast("Havola nusxalandi.");
+      } catch (err) {
+        showToast("Havolani nusxalash imkoni bo'lmadi.");
+      }
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(
+        () => showToast("Havola nusxalandi."),
+        fallback
+      );
+    } else {
+      fallback();
+    }
   });
 
   searchInput.addEventListener('input', () => renderList(searchInput.value));
 
-  const modalOverlay = document.getElementById('modalOverlay');
-  document.getElementById('openAddModal').addEventListener('click', () => {
-    document.getElementById('newTitle').value = '';
-    document.getElementById('newDate').value = '';
-    document.getElementById('newBody').value = '';
-    document.getElementById('newPin').value = '';
-    modalOverlay.classList.add('active');
-    document.getElementById('newTitle').focus();
-  });
-  document.getElementById('cancelAdd').addEventListener('click', () => modalOverlay.classList.remove('active'));
-  modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) modalOverlay.classList.remove('active'); });
-
-  const PIN_KEY = 'site_pin';
-
-  document.getElementById('saveAdd').addEventListener('click', async () => {
-    const title = document.getElementById('newTitle').value.trim();
-    const date = document.getElementById('newDate').value.trim();
-    const body = document.getElementById('newBody').value.trim();
-    const pinInput = document.getElementById('newPin').value;
-
-    if (!title || !body) {
-      showToast("Sarlavha va matn kiritilishi shart.");
-      return;
-    }
-    if (!pinInput) {
-      showToast("Maxfiy so'zni kiriting.");
-      return;
-    }
-
-    let storedPin = null;
-    try {
-      const res = await window.storage.get(PIN_KEY, true);
-      storedPin = res ? res.value : null;
-    } catch (e) {
-      storedPin = null;
-    }
-
-    if (!storedPin) {
-      const confirmMsg = "Bu — birinchi marta insho qo'shyapsiz. Kiritgan maxfiy so'zingiz saytning doimiy paroli bo'lib qoladi, faqat shu so'zni bilganlar keyinchalik insho qo'sha oladi. Davom etasizmi?";
-      if (!confirm(confirmMsg)) return;
-      try {
-        await window.storage.set(PIN_KEY, pinInput, true);
-      } catch (e) {
-        showToast("Parolni saqlashda xatolik yuz berdi.");
-        return;
-      }
-    } else if (pinInput !== storedPin) {
-      showToast("Maxfiy so'z noto'g'ri.");
-      return;
-    }
-
-    const essay = {
-      id: 'e-' + Date.now(),
-      folio: nextFolio(),
-      title,
-      date,
-      body
-    };
-    essays.push(essay);
-    await persist();
-    modalOverlay.classList.remove('active');
-    renderList(searchInput.value);
-    showToast("Insho saqlandi.");
-  });
-
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      if (modalOverlay.classList.contains('active')) modalOverlay.classList.remove('active');
-      else if (readerView.classList.contains('active')) closeReader();
-      else if (aboutView.classList.contains('active')) closeReader();
+      if (readerView.classList.contains('active') || aboutView.classList.contains('active')) goHome();
     }
   });
 
-  loadEssays();
+  initEssays();
 })();
 </script>
 
