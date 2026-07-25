@@ -215,6 +215,23 @@
     margin: 0;
   }
 
+  /* Sarlavha + yozilgan sana bir qatorda; joy yetmasa sana pastga tushadi. */
+  .essay-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+  }
+
+  .essay-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--clay-gold);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
   .empty-state {
     padding: 60px 0;
     text-align: center;
@@ -1052,7 +1069,10 @@
       li.setAttribute('role', 'button');
       li.innerHTML = `
         <div class="folio">${escapeHtml(essay.folio || '')}</div>
-        <h3 class="essay-title">${escapeHtml(essay.title)}</h3>
+        <div class="essay-head">
+          <h3 class="essay-title">${escapeHtml(essay.title)}</h3>
+          ${essay.date ? '<span class="essay-date">' + escapeHtml(essay.date) + '</span>' : ''}
+        </div>
       `;
       li.addEventListener('click', () => { location.hash = 'insho-' + essay.folio; });
       li.addEventListener('keypress', (e) => { if (e.key === 'Enter') location.hash = 'insho-' + essay.folio; });
