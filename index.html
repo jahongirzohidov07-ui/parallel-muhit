@@ -318,6 +318,65 @@
     color: var(--ink);
   }
 
+  /* Qisqacha ma'lumot bloki — "Men haqimda" bo'limi tepasida */
+  .about-facts {
+    margin: 0 0 30px;
+    padding: 6px 20px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .about-facts .row {
+    display: flex;
+    gap: 14px;
+    padding: 11px 0;
+  }
+
+  .about-facts .row + .row {
+    border-top: 1px solid var(--rule);
+  }
+
+  .about-facts .k {
+    flex: 0 0 120px;
+    color: var(--ink-soft);
+  }
+
+  .about-facts .v {
+    flex: 1;
+    color: var(--ink);
+  }
+
+  @media (max-width: 520px) {
+    .about-facts .row {
+      flex-direction: column;
+      gap: 3px;
+    }
+    .about-facts .k {
+      flex: none;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+  }
+
+  .about-ul {
+    margin: 0 0 24px;
+    padding-left: 24px;
+  }
+
+  .about-ul li {
+    margin-bottom: 10px;
+  }
+
+  .about-ul strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
   #readerBody p:first-of-type::first-letter {
     font-family: 'Fraunces', serif;
     font-size: 54px;
@@ -521,33 +580,103 @@
       <h1 class="reader-title">Men haqimda</h1>
     </div>
     <div class="reader-body">
-      <p class="about-lead">Zoxidov Jahongir. 1997-yil 17-martda Bekobodda tug'ilganman.</p>
+      <p class="about-lead">Zoxidov Jahongir Ilhomjonovich. 1997-yil 17-martda Toshkent viloyati, Bekobod tumanidagi Zafar shaharchasida tug'ilganman.</p>
 
-      <p>Ta'lim sohasida ishlayman. Kunlarim o'quvchilar, o'qituvchilar va sinfxonalar orasida o'tadi. Shu saytdagi insholarning ko'pchiligi ham kitobdan emas, o'sha jonli tajribadan chiqqan.</p>
+      <p>Ta'lim sohasida ishlayman: o'qituvchi, tadbirkor, murabbiy va muallif. Kunlarim o'quvchilar, o'qituvchilar va sinfxonalar orasida o'tadi. Shu saytdagi insholarning ko'pchiligi ham kitobdan emas, o'sha jonli tajribadan chiqqan.</p>
 
-      <h2>Nima bilan shug'ullanaman</h2>
-
-      <p class="about-role"><strong>Jony Academy</strong> — Bekobod va Zafardagi ingliz tili o'quv markazlari. Asoschisiman.</p>
-
-      <p class="about-role"><strong>Jony School</strong> — xususiy maktab. Asoschisiman.</p>
-
-      <p class="about-role"><strong>Stech</strong> — IT yo'nalishidagi o'quv markazi. Asoschilaridan biriman.</p>
-
-      <p>Bulardan tashqari o'qituvchilarni tayyorlash va mentorlik bilan shug'ullanaman. Chunki ta'limda eng katta o'zgarishni yangi bino ham, chiroyli dastur ham emas — tayyorlangan o'qituvchi qiladi. Qolgan hamma narsa shundan keyin keladi.</p>
-
-      <h2>O'qish va yozish</h2>
-
-      <p>2010-yildan buyon yuzlab kitob o'qiganman. O'zim ham bir necha kitob yozganman.</p>
-
-      <p>Ko'p yillar davomida insholarimni Telegram kanalida yozib keldim. Lekin Telegram — tez xabar uchun qurilgan joy. Uzun matn u yerda ko'milib ketadi, o'qish ham qiyin: skroll uzun, harflar zich, ko'z charchaydi. Shuning uchun bu saytni ochdim. Endi insholarning asosiy uyi — shu yer.</p>
+      <div class="about-facts">
+        <div class="row"><span class="k">Tug'ilgan</span><span class="v">1997-yil 17-mart — Zafar, Bekobod tumani</span></div>
+        <div class="row"><span class="k">Kasbim</span><span class="v">Pedagog, tadbirkor, murabbiy, muallif</span></div>
+        <div class="row"><span class="k">O'qituvchilik</span><span class="v">2017-yildan buyon</span></div>
+        <div class="row"><span class="k">Ta'lim</span><span class="v">University of Sunderland (Buyuk Britaniya) — BA (Hons) Business and Management, 2020</span></div>
+        <div class="row"><span class="k">Ingliz tili</span><span class="v">IELTS 8.0, CEFR C1 — Listening 9.0, Reading 9.0</span></div>
+        <div class="row"><span class="k">Loyihalarim</span><span class="v">Jony Academy, Jony School, IT Master School</span></div>
+        <div class="row"><span class="k">Muallif</span><span class="v">10 dan ortiq kitob</span></div>
+      </div>
 
       <h2>Nima haqida yozaman</h2>
+
+      <p>Ko'p yillar davomida insholarimni Telegram kanalida yozib keldim. Lekin Telegram — tez xabar uchun qurilgan joy. Uzun matn u yerda ko'milib ketadi, o'qish ham qiyin: skroll uzun, harflar zich, ko'z charchaydi. Shuning uchun bu saytni ochdim. Endi insholarning asosiy uyi — shu yer.</p>
 
       <p>Muayyan jadvalga bog'lanmayman. Ilhom kelganda, aytadigan gapim yig'ilganda yozaman. Shuning uchun insholarim uzun bo'ladi — ba'zida ikki ming so'zdan oshadi. Bir fikrni yarim ochib qoldirgandan ko'ra, uni oxirigacha aytganim ma'qul.</p>
 
       <p>Mavzular turlicha: ta'lim, oila, moliya, o'z-o'zini anglash, din. Lekin barchasida bitta maqsad bor — tajribadan chiqqan haqiqatni sodda tilda yetkazish. O'zim yashab ko'rmagan, o'zim tekshirmagan narsani yozmaslikka harakat qilaman.</p>
 
+      <p>Yozish men uchun fikrlash usuli — qog'ozda o'ylayman. "Insho" so'ziga men "urinish" deb qaraganman: yozishni boshlaysan, g'oya kelishni boshlaydi.</p>
+
       <p>Agar insholarim sizni biror narsa haqida o'ylashga majbur qilgan bo'lsa, men uchun shuning o'zi kifoya.</p>
+
+      <h2>Insholarimdagi o'z atamalarim</h2>
+
+      <p>Yozgan sari ba'zi holatlarga tilimizda tayyor nom yo'qligini sezdim. Shuning uchun o'zim nom qo'yishga to'g'ri keldi. Insholarimda bu tushunchalar qaytib-qaytib uchraydi:</p>
+
+      <ul class="about-ul">
+        <li><strong>Aqlmoq</strong> — bilmaganini bilmaslik holati.</li>
+        <li><strong>Orzumangasa</strong> — orzumand bilan dangasaning qo'shilmasi: orzusi katta, harakati yo'q odam.</li>
+        <li><strong>Bog' ro'yxati</strong> — qaror qabul qilishni tozalab turadigan usul.</li>
+        <li><strong>Sarmoya ketma-ketligi</strong> — sayohat, tanishlar, bilim, tajriba va aktivlarning to'g'ri navbati.</li>
+      </ul>
+
+      <h2>Kitoblarim</h2>
+
+      <p>10 dan ortiq kitob yozganman. Ko'pi ingliz tilini o'rganish, IELTSga tayyorgarlik va o'qituvchilik mahoratiga bag'ishlangan:</p>
+
+      <ul class="about-ul">
+        <li>"Ingliz tilini o'rganish sanati"</li>
+        <li>"Wow Grammar"</li>
+        <li>"Jony Essays"</li>
+        <li>IELTS 1.0–7.0 intensiv seriyasi</li>
+      </ul>
+
+      <h2>Nima bilan shug'ullanaman</h2>
+
+      <p class="about-role"><strong>Jony Academy</strong> — 2019-yil 19-avgustda Bekobodda bitta kichkina xonada boshlangan ingliz tili o'quv markazi. Bugun 5 filial, 70 ga yaqin xodim, 650–700 o'quvchi. IELTS va CEFR/Multilevel sertifikatlariga tayyorlaymiz. Asoschisiman.</p>
+
+      <p class="about-role"><strong>Jony School</strong> — xususiy maktab, eng yangi loyiham. 2026-yil sentabridan 1400 kvadrat metrlik yangi qavat to'liq ishga tushadi. Asoschisiman.</p>
+
+      <p class="about-role"><strong>IT Master School</strong> — axborot texnologiyalari yo'nalishidagi o'quv markazi.</p>
+
+      <p class="about-role"><strong>TTP — Ustozlik Psixologiyasi</strong> — o'qituvchilar uchun kurs. O'zim olib boraman.</p>
+
+      <p class="about-role"><strong>Shogirdlik dasturi</strong> — yosh murabbiylarni shaxsan tarbiyalash dasturi.</p>
+
+      <p class="about-role"><strong>Nero Club</strong> — oilaviy qadriyatlar va meros ustida ishlaydigan jamoa. Hammuassisiman.</p>
+
+      <p>Bularning hammasida bitta asos bor: ta'limda eng katta o'zgarishni yangi bino ham, chiroyli dastur ham emas — tayyorlangan o'qituvchi qiladi. Qolgan hamma narsa shundan keyin keladi.</p>
+
+      <h2>Ta'lim va ingliz tili</h2>
+
+      <p>Maktabni 2012-yilda a'lochi bo'lib bitirdim, kollejni 2015-yilda imtiyozli diplom bilan tugatdim. Keyin Toshkentga chiqdim.</p>
+
+      <p>2016-yilda MDIST — Management Development Institute of Singapore in Tashkent — ga o'qishga kirdim. Bu institut Britaniyaning University of Sunderland universiteti bilan hamkorlikda diplom beradi. 2020-yil 14-iyulda Sunderlandning BA (Hons) Business and Management diplomini oldim, daraja — 2:1 (Upper Second-Class Honours). Butun dastur ingliz tilida o'tildi va ingliz tilida baholandi.</p>
+
+      <p>Ingliz tilidagi yo'lim shoshmasdan kechdi: IELTS 6.5 (2016), 7.5 (2021), 8.0 (2024). Oxirgi natijada Listening va Reading — 9.0 ball. 2022-yilda Davlat Test Markazining C1 sertifikatini ham oldim. Sakkiz yilda bir yarim ball — tez emas. Lekin shogirdimga "o'zim chiqmagan cho'qqiga sizni chiqaraman" demaslik uchun bu yo'lni o'zim bosib o'tishim kerak edi.</p>
+
+      <h2>O'zim ham o'qib turaman</h2>
+
+      <p>2010-yildan 2025-yilgacha 110 dan ortiq kitob o'qidim va har biriga o'zim baho qo'yib chiqdim. O'qishni kayfiyatga tashlab qo'ymaslikka harakat qilaman — reja va izchillik bo'lmasa, kitob javonda qolib ketadi.</p>
+
+      <p>Kurslarda o'quvchi bo'lib o'tirishdan ham tortinmayman. "Tizim Markaz" (Axrolxo'ja Rahmatxo'jayev) — o'quv markazlarini tizimlashtirish kursi, eng yaxshi o'quvchi sifatida sertifikat oldim. MFaktor 56 INTENSIVE (2023). Aziz Rahimovning shogirdlik dasturi. Javohir Quvvatovning pedagoglik konsepsiyasi kursi. 2025-yilda Alisher Isayevning "Biznesni davolash" kursini bitirdim — kursni 300 ga yaqin tadbirkor o'qidi, diplomga 7 nafari sazovor bo'ldi.</p>
+
+      <h2>Yugurish va tog'</h2>
+
+      <p>Yugurishni 4-sinfda boshladim. Jismoniy tarbiya darsidagi uzoqlikka yugurish imtihonida birinchi bo'lib chiziqdan o'tdim — charchaganimda sinfdoshlarimning olqishi kuch bergani hali ham yodimda. Maktabni bitirgunimcha uzoqlikka yugurishda bir marta ham birinchi o'rindan tushmadim. Keyin uzoq yillar tashlab qo'ydim.</p>
+
+      <p>2025-yilda qaytdim: 12-yanvarda "G'olib" marafonida 10 kilometr (1 soat 4 daqiqa 50 soniya), 13-aprelda VII Toshkent Xalqaro Marafonida yana 10 kilometr, shu yil Samarqandda esa birinchi yarim marafonimni yakunladim — 21,1 kilometr, 2 soat 34 daqiqa 56 soniya.</p>
+
+      <p>Tog'ga chiqish — eng sevimli mashg'ulotim. 2025-yilda uchta cho'qqi: Buritau (1295 metr, 6-aprel), Kichik Chimyon (2100 metrga yaqin, 26-avgust) va Katta Chimyon (3309 metr, 1-sentabr) — oxirgi ikkitasi orasida atigi olti kun. Katta Chimyonga 8 soat chiqdim, 5 soat tushdim, 38 ming qadam bosdim. Ba'zi joyda qiyalik 80 gradusga yetdi, bir necha kishi ortga qaytdi. Men qaytishni bir soniya ham o'ylamadim.</p>
+
+      <p>Bularning hammasi bitta narsani o'rgatdi: ulkan natija — kichik, izchil qadamlarning yig'indisi. Bitta xonadan besh filialgacha, 6.5 dan 8.0 gacha, 10 kilometrdan yarim marafongacha — hammasi shunday bo'lgan.</p>
+
+      <h2>Ildizim va "Jony" ismi</h2>
+
+      <p>Oilamizda o'qituvchilik an'anasi bobomdan boshlanadi — u o'z davrida atrofga tanilgan rus tili o'qituvchisi bo'lgan. Familiyam ham uning ismidan olingan, ya'ni har kuni ildizimni eslatib turadi. Buvim menga 5–6-sinflarda shaxmat o'ynashni o'rgatdi; sabr bilan, oldinga qarab o'ylashni birinchi bo'lib u o'rgatgan.</p>
+
+      <p>Bog'chaga bormaganman. Birinchi ustozim onam bo'ldi: harf-savodni uyda o'rgandim va 6 yoshda maktabga bordim. Otam bir umr turli kasblarda halol mehnat qildi, hozir mustaqil tadbirkor. Undan o'rgangan eng katta gapim — mukofoti kafolatlanmagan ishlarga ham bel bog'lash mumkin.</p>
+
+      <p>Bolaligimda oilada meni erkalab "Jony" deb chaqirishgan; bu laqabni katta amakim qo'ygan. Yillar o'tib birinchi o'quv markazimga nom qo'yish payti kelganda, uzoq o'ylab o'tirmadim — Jony Academy. Nom tasodifiy tanlanmagan, u mening ildizim.</p>
+
+      <p>Ikki singlim ham hozir Jony Academy'da ishlaydi. Turmush qurganman, bir qizim bor. Hayotimning markazida — oila, ilm va halol mehnat turadi.</p>
     </div>
   </div>
 
