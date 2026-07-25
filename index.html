@@ -423,6 +423,18 @@
     color: var(--indigo);
   }
 
+  /* Insho raqam yoki tinish belgisi bilan boshlansa, bosh harf chizilmaydi
+     (masalan "28 yoshga..." — 2 va 8 ajralib ketmasligi uchun). */
+  #readerBody.no-dropcap > p:first-of-type::first-letter {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    float: none;
+    line-height: inherit;
+    padding: 0;
+    color: inherit;
+  }
+
   /* Insho matnini belgilab nusxalashdan himoya.
      Faqat insho matniga tegishli — sarlavha, sana va "Men haqimda" erkin qoladi. */
   #readerBody {
@@ -1117,6 +1129,16 @@
       fillText(p, block.replace(/\n+/g, ' '));
       bodyEl.appendChild(p);
     });
+
+    /* Bosh harf faqat harf bilan boshlangan inshoga qo'yiladi. */
+    const firstP = bodyEl.querySelector('p');
+    const ch = firstP ? (firstP.textContent || '').trim().charAt(0) : '';
+    const isLetter = !!ch && ch.toLowerCase() !== ch.toUpperCase();
+    if (isLetter) {
+      bodyEl.classList.remove('no-dropcap');
+    } else {
+      bodyEl.classList.add('no-dropcap');
+    }
   }
 
   function showEssay(id) {
